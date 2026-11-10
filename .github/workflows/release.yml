@@ -1,0 +1,26 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - run: go test -race ./...
+      - run: go vet ./...
+      - name: Build both macOS architectures
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: sh scripts/release.sh "$RELEASE_TAG"
+      - name: Publish binaries and checksums
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" dist/*.tar.gz dist/checksums.txt --verify-tag --generate-notes --title "Agent Ping for Cursor $RELEASE_TAG"

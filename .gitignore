@@ -1,0 +1,4 @@
+/dist/
+/agent-ping-cursor
+*.test
+.DS_Store
