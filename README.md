@@ -49,7 +49,7 @@ Agent Ping merges its entry into a standard JSON version 1 hook file and preserv
 go test -race ./...
 go vet ./...
 go build -o agent-ping-cursor .
-sh scripts/release.sh v0.1.0
+sh scripts/release.sh v0.1.1
 ```
 
 The release workflow tests the source, builds both Mac architectures, and publishes archives and checksums from a version tag. See [LICENSE](LICENSE) for the MIT terms.

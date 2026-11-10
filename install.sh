@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-agent_ping_version=${AGENT_PING_CURSOR_VERSION:-v0.1.0}
+agent_ping_version=${AGENT_PING_CURSOR_VERSION:-v0.1.1}
 agent_ping_repo=sunnyby/agent-ping-cursor
 agent_ping_bin_dir=${AGENT_PING_CURSOR_BIN_DIR:-"$HOME/.local/bin"}
 
